@@ -1,6 +1,7 @@
 include <configuration.scad>
 bfb = false;
 orientation = true;
+render_plate=1;
 module xcarriage(){
 translate(v = [0,0,2.5]) union(){difference(){
 	union(){
@@ -402,4 +403,28 @@ translate([45,-5,0]) rotate([0,-90,-35]) import_stl("y-motor-bracket_1off.stl");
 }
 
 //#translate([-49,-49,-1]) cube(size=[98,98,1]);
-translate([-49,-49,0]) mbplate1();
+if(render_plate==1) {
+  echo("Rendering Plate 1...");
+  translate([-49,-49,0]) mbplate1();
+}
+
+if(render_plate==2) {
+  echo("Rendering Plate 2...");
+  translate([-49,-49,0]) mbplate2();
+}
+
+if(render_plate==3) {
+  echo("Rendering Plate 3...");
+  translate([-49,-49,0]) mbplate3();
+}
+
+if(render_plate==4) {
+  echo("Rendering Plate 4...");
+  translate([-49,-49,0]) mbplate4();
+}
+
+if(render_plate==5) {
+  echo("Rendering Plate 5...");
+  translate([-49,-49,0]) mbplate5();
+}
+
