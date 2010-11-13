@@ -94,7 +94,7 @@ if(bfb) if(orientation) translate(v = [0, -5, 0]) cylinder(h = 40, r=21, $fn=20,
 %translate(v = [-45, -25, -2.5]) cube(size=[10,50,50]);
 //translate(v = [10, -25, 9]) %cube(size=[50,50,14]);
 }
-for ( n = [-15:15]) translate([0,3*n,1]) rotate ([45,0,0]) cube([120,1,1], center = true);
-for ( n = [-11:11]) translate([0,3*(n+0.5),0]) rotate ([45,0,0]) cube([120,1,1], center = true);
+for ( n = [-20:14]) translate([-3*n,0,1]) rotate ([0,45,0]) cube([1,120,1], center = true);
+for ( n = [-20:11]) translate([-3*(n+0.5),0,0]) rotate ([0,45,0]) cube([1,120,1], center = true);
 }
 
