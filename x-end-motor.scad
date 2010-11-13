@@ -93,7 +93,8 @@ translate(v = [0, 0, -4.7]){
 	translate(v = [32.5, 7-15.5, 23.5-15.5+3]) cube(size = [20,3.5,8], center = true);
 }
 }}
-for ( n = [-15:15]) translate([0,3*n,1]) rotate ([45,0,0]) cube([120,1,1], center = true);
-for ( n = [-14:14]) translate([0,3*(n+0.5),0]) rotate ([45,0,0]) cube([120,1,1], center = true);
+for ( n = [-1:1]) translate([0,23*n-1,0]) rotate ([45,0,0]) cube([120,2,2], center = true);
+translate([0,0,0]) rotate ([0,45,0]) cube([2,50,2], center = true);
+translate([13,-37,0]) rotate ([0,45,0]) cube([2,15,2], center = true);
 }
 
