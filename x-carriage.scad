@@ -18,6 +18,8 @@ include <configuration.scad>
 // true - horizontal
 // false - vertical
 	orientation = true;
+antiwarping = false;
+
 
 translate(v = [0,0,2.5]) {
 	union() {
@@ -152,6 +154,13 @@ translate(v = [0,0,2.5]) {
 					translate(v = [0, -5, 0])
 						cylinder(h = 40, r=21, $fn=20, center=true);
 			}
+			if (antiwarping){
+				for (x =[-1:2])  translate ([20*x,0,-2.5]) rotate ([0,45,0]) cube([2,100,2],center=true);
+				for (y =[-1:1])  translate ([0,20*y,-2.5]) rotate ([45,0,0]) cube([100,2,2],center=true);
+			}
 		}
 	}
 }
+
+
+

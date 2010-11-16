@@ -1,71 +1,37 @@
 // PRUSA Mendel  
-// Z motor mount
-// Used for mounting Z motors
+// Z motor mount -- Used for mounting Z motors
 // GNU GPL v2
 // Josef Průša
 // josefprusa@me.com
 // prusadjs.cz
+// Clean up by Christopher Olah <christopherolah.co@gmail.com>
 // http://www.reprap.org/wiki/Prusa_Mendel
 // http://github.com/prusajr/PrusaMendel
 
-difference() {
-	// body
-	union() {
-		translate(v=[2.5,0,0])
-			cube(size = [55,60,16], center = true);
-		translate(v=[2.5,0,-4])
-			cube(size = [55,76,8], center = true);
-		translate(v=[-25,30,0])
-			rotate(a=[0,90,0])
-				cylinder(h = 55, r=8, $fn=30);
-		translate(v=[-25,-30,0])
-			rotate(a=[0,90,0])
-				cylinder(h = 55, r=8, $fn=30);
+
+rotate([0,-90,0]) difference(){
+	// Main body:
+	union(){
+		translate([-5,0,0]) cube(size = [70,60,16], center = true);
+		translate([-5,0,-4]) cube(size = [70,76,8], center = true);
+		translate ([30,0,-8]) cylinder(h=16,r=10);
+		for (y=[-1,1])  translate ([-40,30*y,0]) rotate([0,90,0]) cylinder(h = 70, r=8, $fn=30);
+	}
+	// NEMA17 Motor sits in this
+	translate([-2.1,0,3.1]) cube(size = [46,43,10], center = true);
+	// And goes through this
+	translate([0,0,-20]) cylinder(h = 40, r=15);
+	//The vertical rod goes through here
+	translate([30,0,-45]) cylinder(h = 50, r=4.1);
+	for (y=[-1,1]) {
+		//top rods:
+		translate([-50,30*y,0]) rotate([0,90,0]) cylinder(h = 100, r=4.5);
+		//motor screw holes
+		for (x=[-1,1]) translate([15*x,15*y,0]) cube(size = [9,3.2,25], center = true);
+		//diagonal rods
+		translate([-32,39*y,-40]) rotate([30*y,0,0]) cylinder (h=100,r=4.5);
+		//diagonal rod nut space:
+		translate ([-32.5,13*y,5]) rotate([30*y,0,0]) translate([0,0,4.5]) cube(size=[15.,16,12],center=true);
 	}
 
-	// NEMA17 motor mount socket
-	translate(v=[-2.6, 0, 3.6])
-		cube(size = [47,43,11], center = true);
-	// NEMA17 motor mount screw holes
-	translate(v=[15,15,0])
-		cube(size = [9,3.2,25], center = true);
-	translate(v=[-15,15,0])
-		cube(size = [9,3.2,25], center = true);
-	translate(v=[15,-15,0])
-		cube(size = [9,3.2,25], center = true);
-	translate(v=[-15,-15,0])
-		cube(size = [9,3.2,25], center = true);
-	// NEMA17 motor mount shaft hole
-	translate(v=[0,0,-20])
-		cylinder(h = 100, r=15);
-
-	// top rod holes
-	translate(v=[-50,30,0])
-		rotate(a=[0,90,0])
-			cylinder(h = 100, r=4.5);
-	translate(v=[-50,-30,0])
-		rotate(a=[0,90,0])
-			cylinder(h = 100, r=4.5);
-
-	// Z bar socket
-		translate(v=[30,0,-20])
-			cylinder(h = 100, r=4.2);
-			
-	// Z bar clamp screw holes
-	translate(v=[0,7,0])
-		rotate(a=[0,90,0])
-			cylinder(h = 100, r=2.2);
-	translate(v=[0,-7,0])
-		rotate(a=[0,90,0])
-			cylinder(h = 100, r=2.2);
-
-	// Z bar clamp nut traps
-	translate(v=[0,7,0])
-		rotate(a=[0,90,0])
-			rotate(a=[0,0,30])
-				cylinder(h = 24, r=4,$fn =6);
-	translate(v=[0,-7,0])
-		rotate(a=[0,90,0])
-			rotate(a=[0,0,30])
-				cylinder(h = 24, r=4, $fn=6);
 }

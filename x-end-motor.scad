@@ -9,6 +9,7 @@
 
 include <configuration.scad>
 
+
 translate(v = [0,17,24.5]) {
 	union() {
 		difference(){
@@ -18,6 +19,7 @@ translate(v = [0,17,24.5]) {
 				translate(v = [25, -25, -16.6])
 					cube(size = [20,70,15.8], center = true);
 			}
+
 
 			translate(v = [0, 0, -15])
 				cube(size = [80,40,50], center = true);
