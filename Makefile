@@ -10,7 +10,7 @@ BUILDDIR=./build
 
 # PARTS = bar-clamp belt-clamp coupling endstop-holder frame-vertex pla-bushing prusalogo rod-clamp x-carriage x-end-idler x-end-motor y-slider-better z-motor-mount
 ## prusalogo.scad depends on bitmap.scad
-PARTS = bar-clamp belt-clamp coupling endstop-holder frame-vertex pla-bushing rod-clamp x-carriage x-end-idler x-end-motor y-slider-better z-motor-mount
+PARTS = bar-clamp belt-clamp coupling endstop-holder frame-vertex pla-bushing rod-clamp x-carriage x-end-idler x-end-motor y-slider-better z-motor-mount z-motor-mount-onerod
 
 .PHONY : usage all clean $(PARTS) MakerbotPlates MendelPlate
 
