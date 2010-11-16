@@ -8,9 +8,10 @@
 // http://www.reprap.org/wiki/Prusa_Mendel
 // http://github.com/prusajr/PrusaMendel
 
-difference(){
+rotate([0,-90,0]) difference(){
 	// Main body:
 	union(){
+
 		translate([-5,0,0]) cube(size = [70,60,16], center = true);
 		translate([-5,0,-4]) cube(size = [70,76,8], center = true);
 		translate ([30,0,-8]) cylinder(h=16,r=10);
@@ -32,8 +33,8 @@ difference(){
 		translate([-32,39*y,-40]) rotate([30*y,0,0]) cylinder (h=100,r=4.5);
 	}
 
-}
 
+}
 
 
 
