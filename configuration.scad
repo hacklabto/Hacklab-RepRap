@@ -7,6 +7,8 @@
 // http://www.reprap.org/wiki/Prusa_Mendel
 // http://github.com/prusajr/PrusaMendel
 
+include <lib/mcad/motors.scad>
+
 // M8 rod diameter
 m8_diameter = 8.4;
 
@@ -31,3 +33,12 @@ m3_nut_diameter = 7;
 // Bushing holders diameter
 bushing_diameter = 11;
 
+linear_extrude(height = 5, center = true)
+{
+	difference()
+	{
+		square([100,100], center = true);
+		square([10,10], center = true);
+//		stepper_motor_mount(17,mochup=true);
+	}
+}
