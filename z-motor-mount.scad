@@ -8,7 +8,8 @@
 // http://www.reprap.org/wiki/Prusa_Mendel
 // http://github.com/prusajr/PrusaMendel
 
-two_top_rods = false; //Use two top rods or one?
+include <configuration.scad>
+
 
 difference(){
 	// Main body:
@@ -23,17 +24,13 @@ difference(){
 		translate ([26.5,0,-8]) cylinder(h=15,r=8);
 	}
 	// Motor sits in this
-	translate([-2.1,0,3.1]) cube(size = [46,43,10], center = true);
-	// And goes through this
-	translate([0,0,-20]) cylinder(h = 20, r=15);
+	translate([-2.1,0,3.1]) motor();
 	//The vertical rod goes through here
 	translate([26.5,0,-45]) cylinder(h = 50, r=4.0);
 	//top rod (if not tworods):
 	if (!two_top_rods) translate([-50,0,0]) rotate([0,90,0]) cylinder(h = 22.5, r=4.0);
 	//y symetry
 	for (y=[-1,1]) {
-		//motor screw holes
-		for (x=[-1,1]) translate([15*x,15*y,-5]) cube(size = [9,3.2,15], center = true);
 		//diagonal rods
 		translate([-32,39*y,-40]) rotate([30*y,0,0]) cylinder (h=100,r=4.0);
 		//diagonal rod nut space 
