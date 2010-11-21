@@ -85,18 +85,30 @@ translate(v = [0,35,24.5]) {
 		}
 
 		//idler wheel connector
-		mirror() {
-			translate(v = [0, -35, -12]) {
-				translate(v = [21, -23.5, 26.3])
-					cube(size = [24,3,2.4], center = true);
-				translate(v = [21, 13.5, 26.3])
-					cube(size = [24,3,2.4], center = true);
-				difference() {
-					translate(v = [33.5, -5, 12.5])
-						cube(size = [3,40,30], center = true);
-					translate(v = [32.5, -6, 20.3])
-						rotate(a=[0,90,0])
-							cylinder(h = 90, r=m4_diameter/2, $fn=9, center=true);
+		if (x_belt) {
+			mirror() {
+				translate(v = [0, -35, -12]) {
+					translate(v = [21, -23.5, 26.3])
+						cube(size = [24,3,2.4], center = true);
+					translate(v = [21, 13.5, 26.3])
+						cube(size = [24,3,2.4], center = true);
+					difference() {
+						translate(v = [33.5, -5, 12.5])
+							cube(size = [3,40,30], center = true);
+						translate(v = [32.5, -6, 20.3])
+							rotate(a=[0,90,0])
+								cylinder(h = 90, r=m4_diameter/2, $fn=9, center=true);
+					}
+				}
+			}
+		}else {
+			translate([-65,0,-12]) {
+				difference(){
+					union(){
+						translate([37, -35, 19]) cube([35,4,63], center = true);
+						translate([37, -22, 19]) cube([35,4,63], center = true);
+					}
+					translate([35,-19,25]) rotate([90,0,0]) cylinder(h = 20, r=13);
 				}
 			}
 		}

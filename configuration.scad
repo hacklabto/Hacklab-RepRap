@@ -33,13 +33,25 @@ m3_nut_diameter = 7;
 // Bushing holders diameter
 bushing_diameter = 11;
 
-linear_extrude(height = 5, center = true)
-{
-	difference()
-	{
-		square([100,100], center = true);
-		square([10,10], center = true);
-		stepper_motor_mount(17,mochup=false);
-	}
+x_belt = true; //use belt or threaded rod for x-axis movement
+               //threaded rod is currently broken. Do not use it.
+               //Leave this false or be prepared to do lots of drilling!
+               //Also, x-carriage doesn't support this option so you'll
+               //have come up with a hack to make it work if you use this
+               //option.
+
+two_top_rods = false; //Use two top rods or one?
+                      //No repraps have been built with one top, so use
+                      //this design at your own risk!
+
+//The motor design used by your printer
+module motor() {
+	//This is (essentially) what ever was being used in z-motor-mount orriginaly. 
+	// Motor sits in this
+	cube(size = [45,43,10], center = true);
+	// And goes through this
+	translate([0,0,-15]) cylinder(h = 20, r=15);
+	//And the screws go through here
+	for (y=[-1,1]) for (x=[-1,1]) translate([15*x,15*y,-5]) cube(size = [8,3.2,15], center = true);
 }
-stepper_motor_mount(17,mochup=true);
+

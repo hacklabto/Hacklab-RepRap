@@ -14,15 +14,11 @@ translate(v = [0,17,24.5]) {
 	union() {
 		difference(){
 			union(){
-				translate(v = [-25, -25, -16.6])
-					cube(size = [20,70,15.8], center = true);
-				translate(v = [25, -25, -16.6])
-					cube(size = [20,70,15.8], center = true);
+				translate(v = [-25, -40, -16.6])
+					cube(size = [20,40,15.8], center = true);
+				translate(v = [25, -40, -16.6])
+					cube(size = [20,40,15.8], center = true);
 			}
-
-
-			translate(v = [0, 0, -15])
-				cube(size = [80,40,50], center = true);
 
 			//nut traps
 			translate(v = [-25, -29, -19.7]) cylinder(h = 7, r=m3_nut_diameter/2, $fn=6, center=true);
@@ -80,23 +76,24 @@ translate(v = [0,17,24.5]) {
 		}
 
 		//nema17 connector
-		translate(v = [0, 0, -12]) {
-			difference(){
-				union(){
-					translate(v = [21, -22.5, 36.5]) cube(size = [24,5,6], center = true);
-					translate(v = [32.5, 2, 13.5]) cube(size = [5,54,52], center = true);
-					translate(v = [22.5, 2, -11]) cube(size = [20,54,3], center = true);
+		if (x_belt){// use belt or threaded rod?
+			translate(v = [0, 0, -12]) {
+				difference(){
+					union(){
+						translate(v = [21, -22.5, 36.5]) cube(size = [24,5,6], center = true);
+						translate(v = [32.5, 2, 13.5]) cube(size = [5,54,52], center = true);
+						translate(v = [22.5, 2, -11]) cube(size = [20,54,3], center = true);
+					}
+					translate([25, 7, 20]) rotate([0,-90,0]) rotate([0,0,90]) motor();
 				}
-
-				translate(v = [32.5, 7, 18.8]) {
-					translate(v = [7, 0, 0])
-						rotate(a=[0,90,0])
-							cylinder(h = 80, r=12, $fn=20, center=true);
-
-					translate(v = [0, 15.5, 12.5]) cube(size = [20,3.5,8], center = true);
-					translate(v = [0, -15.5, 12.5]) cube(size = [20,3.5,8], center = true);
-					translate(v = [0, 15.5, -12.5]) cube(size = [20,3.5,8], center = true);
-					translate(v = [0, -15.5, -12.5]) cube(size = [20,3.5,8], center = true);
+			}
+		}else {
+			translate(v = [0, 0, -12]) {
+				difference(){
+					union(){
+						translate(v = [35, -34.5, 19]) cube(size = [46,5,63], center = true);
+					}	
+					translate([35,-25,25]) rotate([-90,90,0]) motor();
 				}
 			}
 		}
