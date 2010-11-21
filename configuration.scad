@@ -39,6 +39,7 @@ linear_extrude(height = 5, center = true)
 	{
 		square([100,100], center = true);
 		square([10,10], center = true);
-//		stepper_motor_mount(17,mochup=true);
+		stepper_motor_mount(17,mochup=false);
 	}
 }
+stepper_motor_mount(17,mochup=true);
