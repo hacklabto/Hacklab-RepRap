@@ -32,15 +32,20 @@ m3_nut_diameter = 7;
 bushing_diameter = 11;
 
 
-x_belt = false; //use belt or threaded rod for x-axis movement
+x_belt = true; //use belt or threaded rod for x-axis movement
+               //threaded rod is currently broken. Do not use it.
+               //Leave this false or be prepared to do lots of drilling!
+               //Also, x-carriage doesn't support this option so you'll
+               //have come up with a hack to make it work if you use this
+               //option.
 
 two_top_rods = false; //Use two top rods or one?
-
-
-
+                      //No repraps have been built with one top, so use
+                      //this design at your own risk!
 
 //The motor design used by your printer
 module motor() {
+	//This is (essentially) what ever was being used in z-motor-mount orriginaly. 
 	// Motor sits in this
 	cube(size = [45,43,10], center = true);
 	// And goes through this
