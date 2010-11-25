@@ -33,7 +33,7 @@ m3_nut_diameter = 7;
 // Bushing holders diameter
 bushing_diameter = 11;
 
-x_belt = true; //use belt or threaded rod for x-axis movement
+x_belt = false; //use belt or threaded rod for x-axis movement
                //threaded rod is currently broken. Do not use it.
                //Leave this false or be prepared to do lots of drilling!
                //Also, x-carriage doesn't support this option so you'll
