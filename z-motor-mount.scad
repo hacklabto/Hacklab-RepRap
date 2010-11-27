@@ -9,6 +9,7 @@
 // http://github.com/prusajr/PrusaMendel
 
 include <configuration.scad>
+include <common.scad>
 
 
 difference(){
@@ -26,17 +27,16 @@ difference(){
 	// Motor sits in this
 	translate([-2.1,0,3.1]) motor();
 	//The vertical rod goes through here
-	translate([26.5,0,-45]) cylinder(h = 50, r=4.0);
-	//top rod (if not tworods):
-	if (!two_top_rods) translate([-50,0,0]) rotate([0,90,0]) cylinder(h = 22.5, r=4.0);
-	//y symetry
-	for (y=[-1,1]) {
-		//diagonal rods
-		translate([-32,39*y,-40]) rotate([30*y,0,0]) cylinder (h=100,r=4.0);
-		//diagonal rod nut space 
-		translate ([-32.5,13*y,5]) rotate([30*y,0,0]) translate([0,0,3]) cube(size=[15.,16,10],center=true);
-		//Top rods (if tworods):
-		if (two_top_rods) translate([-50,30*y,0]) rotate([0,90,0]) cylinder(h = 100, r=4.5);
+	translate ([-2,0,-50]) vertical_rods();
+
+	//Diagonal rod and nut space
+	translate ([-32,0,0]) diagonal_rod();
+	translate ([-32,0,0]) diagonal_rod_cube(slide=4);
+	//top rod(s):
+	if (two_top_rods) {
+		for (y=[-1,1]) translate([-50,30*y,0]) rotate([0,90,0]) cylinder(h = 100, r=4.5);
+	}else {
+		translate([-50,0,0]) rotate([0,90,0]) cylinder(h = 22.5, r=4.0);
 	}
 }
 

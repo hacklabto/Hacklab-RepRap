@@ -8,6 +8,7 @@
 // http://github.com/prusajr/PrusaMendel
 
 include <configuration.scad>
+include <common.scad>
 
 
 translate(v = [0,17,24.5]) {
@@ -32,18 +33,7 @@ translate(v = [0,17,24.5]) {
 			translate(v = [25, -50, -20]) cylinder(h = 10, r=m3_diameter/2, $fn=9, center=true);
 
 			//holes for axis
-			translate(v = [-25, -18, -16.7])
-				rotate(a=[90,0,0]) {
-					cylinder(h = 120, r=4.5, $fn=20, center=true);
-					translate(v = [0, 2.60, 0])
-						cylinder(h = 120, r=3.65, $fn=6, center=true);
-				}
-			translate(v = [25, -18, -16.7])
-				rotate(a=[90,0,0]) {
-					cylinder(h = 120, r=4.5, $fn=20, center=true);
-					translate(v = [0, 2.60, 0])
-						cylinder(h = 120, r=3.65, $fn=6, center=true);
-				}
+			translate(v = [0, -79, -16.7])  x_axis_rods();
 		}
 
 		//slider
@@ -66,12 +56,12 @@ translate(v = [0,17,24.5]) {
 					translate(v = [0, 0, -31.65])
 						cube(size = [35,10,15.8], center = true);
 				}
-				translate(v = [0, 0, 16])
-					cylinder(h = 90, r=m8_nut_diameter/2, $fn=6, center=true);
-				translate(v = [0, 0, -78])
-					cylinder(h = 90, r=m8_nut_diameter/2, $fn=6, center=true);
-				translate(v = [0, 0, 0])
-					cylinder(h = 100, r=m8_diameter/2, $fn=9, center=true);
+				translate(v = [0, 0, 16-20])
+					cylinder(h = 50, r=m8_nut_diameter/2, $fn=6, center=true);
+				translate(v = [0, 0, -43])
+					cylinder(h = 20, r=m8_nut_diameter/2, $fn=6, center=true);
+				translate(v = [0, 0, -20])
+					rotate([0,0,90]) vertical_rods();
 			}
 		}
 
@@ -91,7 +81,8 @@ translate(v = [0,17,24.5]) {
 			translate(v = [0, 0, -12]) {
 				difference(){
 					union(){
-						translate(v = [35, -34.5, 19]) cube(size = [46,5,63], center = true);
+						translate(v = [35, -34.5, 25]) cube(size = [46,5,51], center = true);
+						translate(v = [46, -34.5, -6.5]) cube(size = [24,5,12], center = true);
 					}	
 					translate([35,-25,25]) rotate([-90,90,0]) motor();
 				}

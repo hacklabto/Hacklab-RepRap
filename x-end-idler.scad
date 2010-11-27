@@ -8,6 +8,7 @@
 // http://github.com/prusajr/PrusaMendel
 
 include <configuration.scad>
+include <common.scad>
 
 translate(v = [0,35,24.5]) {
 	union() {
@@ -39,18 +40,8 @@ translate(v = [0,35,24.5]) {
 				cylinder(h = 10, r=m3_diameter/2, $fn=9, center=true);
 
 			//holes for axis
-			translate(v = [-25, -18, -16.7])
-				rotate(a=[90,0,0]) {
-					cylinder(h = 120, r=4.5, $fn=20, center=true);
-					translate(v = [0, 2.60, 0])
-						cylinder(h = 120, r=3.65, $fn=6, center=true);
-				}
-			translate(v = [25, -18, -16.7])
-				rotate(a=[90,0,0]) {
-					cylinder(h = 120, r=4.5, $fn=20, center=true);
-					translate(v = [0, 2.60, 0])
-						cylinder(h = 120, r=3.65, $fn=6, center=true);
-				}
+			translate ([0,-75,-17]) rotate ([0,0,180]) x_axis_rods();
+
 		}
 
 		//slider
@@ -102,7 +93,7 @@ translate(v = [0,35,24.5]) {
 				}
 			}
 		}else {
-			translate([-65,0,-12]) {
+			%translate([-65,0,-12]) {
 				difference(){
 					union(){
 						translate([37, -35, 19]) cube([35,4,63], center = true);
