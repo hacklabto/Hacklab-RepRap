@@ -9,6 +9,7 @@
 // http://github.com/prusajr/PrusaMendel
 
 include <configuration.scad>
+include <common.scad>
 
 // if true, cutout for bfb hotend is added
 // bfb hotend support tested only with vertical mounting
@@ -120,13 +121,13 @@ translate(v = [0,0,2.5]) {
 			}
 
 			// belt clamp screw holes
-			translate(v = [30, -18, 12])
+			%translate(v = [30, -18, 12])
 				cylinder(h = 80, r=m4_diameter/2, $fn=9, center=true);
-			translate(v = [48, -18, 12])
+			%translate(v = [48, -18, 12])
 				cylinder(h = 80, r=m4_diameter/2, $fn=9, center=true);
-			translate(v = [30, 18, 12])
+			%translate(v = [30, 18, 12])
 				cylinder(h = 80, r=m4_diameter/2, $fn=9, center=true);
-			translate(v = [48, 18, 12])
+			%translate(v = [48, 18, 12])
 				cylinder(h = 80, r=m4_diameter/2, $fn=9, center=true);
 
 			// belt clamp nut traps
@@ -158,6 +159,7 @@ translate(v = [0,0,2.5]) {
 				for (x =[-1:2])  translate ([20*x,0,-2.5]) rotate ([0,45,0]) cube([2,100,2],center=true);
 				for (y =[-1:1])  translate ([0,20*y,-2.5]) rotate ([45,0,0]) cube([100,2,2],center=true);
 			}
+			translate([0,0,10]) x_axis_rods();
 		}
 	}
 }

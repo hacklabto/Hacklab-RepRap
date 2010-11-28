@@ -93,13 +93,14 @@ translate(v = [0,35,24.5]) {
 				}
 			}
 		}else {
-			%translate([-65,0,-12]) {
+			translate([-65,0,-12]) {
 				difference(){
 					union(){
-						translate([37, -35, 19]) cube([35,4,63], center = true);
-						translate([37, -22, 19]) cube([35,4,63], center = true);
+						translate([32, -29, 25]) cube([45,15,51], center = true);
+						translate([20, -29, -2.5]) cube([21,15,20], center = true);
 					}
-					translate([35,-19,25]) rotate([90,0,0]) cylinder(h = 20, r=13);
+					translate([30,-23,25]) rotate([90,0,0]) cylinder(h = 20, r=12);
+					translate([30,-15,25]) rotate([90,0,0]) cylinder(h = 10, r=8);
 				}
 			}
 		}

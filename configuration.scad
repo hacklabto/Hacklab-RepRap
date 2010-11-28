@@ -40,7 +40,7 @@ x_belt = false; //use belt or threaded rod for x-axis movement
                //have come up with a hack to make it work if you use this
                //option.
 
-two_top_rods = false; //Use two top rods or one?
+two_top_rods = true; //Use two top rods or one?
                       //No repraps have been built with one top, so use
                       //this design at your own risk!
 
