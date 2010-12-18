@@ -1,16 +1,6 @@
-// PRUSA Mendel  
 // Frame vertex
 // GNU GPL v2
-// Josef Průša
-// josefprusa@me.com
-// prusadjs.cz
-// http://www.reprap.org/wiki/Prusa_Mendel
-// http://github.com/prusajr/PrusaMendel
-
-// Based on http://www.thingiverse.com/thing:2003 aka Viks footed 
-// frame vertex, which is based on http://www.thingiverse.com/thing:1780 
-// aka Tonokps parametric frame vertex
-// Thank you guys for your great work
+// Rob Gilson, Chris Olah, Josef Průša, Vik, Tonokps
 
 include <configuration.scad>
 
