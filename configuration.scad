@@ -8,7 +8,7 @@
 // http://github.com/prusajr/PrusaMendel
 
 //include <lib/mcad/motors.scad>
-
+include <constants.scad>
 
 
 // Frame Design Settings
@@ -64,10 +64,41 @@ tight_grip = true; // Use tight holes where possible so that parts will self tap
 
 
 
+//BS That Works
+//=================
+
+// unprintable height under the y carriage for motors + electronics.
+// (rough estimate for vert angle calculations)
+basement_height = 90;
+
+// unprintable height from the bottom of the top frame vertex to 
+// the point where the frame verticies meet.
+// (rough estimate for vert angle calculations)
+attic_height = 5;
+
+//unprintable area due to the x ends/z-sliders
+z_slider_unprintable_height = 20;
+
+// extra length needed on the y axis to compensate for the 
+// y-carriage's length. This is setup for the ABP carriage mount.
+y_carriage_unprintable_length = 4;
+
+//length from the middle of the bottom frame vertex to where the 
+//frame triangle's threaded rods would meet if they were 
+//extended to that point.
+y_vert_triangle_offset = 2;
+
+total_unprintable_area = [0,
+	y_carriage_unprintable_length + y_vert_triangle_offset,
+	basement_height+attic_height+z_slider_unprintable_height];
+
+
 // Driven Dimensions [NO USER-CONFIGURABLE OPTIONS]
 //=================
 
-vert_angle = 60;
+vert_angle = atan( 2*(build_volume[Z]+total_unprintable_area[Z])/(build_volume[Y]+total_unprintable_area[Y]));
+
+echo("Frame Vertex Angle: ",vert_angle);
 
 
 
