@@ -106,4 +106,4 @@ m3_nut_diameter = 7;
 bushing_diameter = 11;
 
 
-include <sanity_check.scad>
+

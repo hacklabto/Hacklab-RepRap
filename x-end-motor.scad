@@ -70,11 +70,10 @@ translate(v = [0,17,24.5]) {
 			translate(v = [0, 0, -12]) {
 				difference(){
 					union(){
-						translate(v = [21, -22.5, 36.5]) cube(size = [24,5,6], center = true);
-						translate(v = [32.5, 2, 13.5]) cube(size = [5,54,52], center = true);
-						translate(v = [22.5, 2, -11]) cube(size = [20,54,3], center = true);
+						translate(v = [21, -22.5, 29.5]) cube(size = [24,5,6], center = true);
+						translate(v = [32.5, 7, 10]) cube(size = [5,64,45], center = true);
 					}
-					translate([25, 7, 20]) rotate([0,-90,0]) rotate([0,0,90]) motor();
+					translate([25, 10, 5]) rotate([45,0,0]) rotate([0,-90,0]) rotate([0,0,90]) motor();
 				}
 			}
 		}else {
