@@ -104,3 +104,6 @@ m3_nut_diameter = 7;
 
 // Bushing holders diameter
 bushing_diameter = 11;
+
+
+include <sanity_check.scad>
