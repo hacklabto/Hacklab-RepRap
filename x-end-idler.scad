@@ -48,13 +48,13 @@ translate(v = [0,35,24.5]) {
 		translate(v = [0, -25, 15])
 			difference() {
 				union() {
-					translate(v = [0, -3.5, -7])
-						cube(size = [24,17,65], center = true);
+					translate(v = [0, -3.5, -19.5])
+						cube(size = [24,17,40], center = true);
 					translate(v = [0, -3.5, -31.65])
 						cube(size = [35,17,15.8], center = true);
 				}
-				translate(v = [0, -0, -7])
-					cube(size = [17,17,70], center = true);
+				translate(v = [0, -0, -17])
+					cube(size = [17,17,60], center = true);
 			}
 
 		//nut trap
@@ -79,14 +79,10 @@ translate(v = [0,35,24.5]) {
 		if (x_belt) {
 			mirror() {
 				translate(v = [0, -35, -12]) {
-					translate(v = [21, -23.5, 26.3])
-						cube(size = [24,3,2.4], center = true);
-					translate(v = [21, 13.5, 26.3])
-						cube(size = [24,3,2.4], center = true);
 					difference() {
-						translate(v = [33.5, -5, 12.5])
-							cube(size = [3,40,30], center = true);
-						translate(v = [32.5, -6, 20.3])
+						translate(v = [33.5, -5, 6])
+							cube(size = [3,10,10], center = true);
+						translate(v = [32.5, -6, 6.5])
 							rotate(a=[0,90,0])
 								cylinder(h = 90, r=m4_diameter/2, $fn=9, center=true);
 					}
@@ -96,10 +92,10 @@ translate(v = [0,35,24.5]) {
 			translate([-65,0,-12]) {
 				difference(){
 					union(){
-						translate([32, -29, 25]) cube([45,15,51], center = true);
-						translate([20, -29, -2.5]) cube([21,15,20], center = true);
+						translate([34, -29, 20]) cube([39,13,41], center = true);
+						translate([23, -29, -2.5]) cube([17,13,20], center = true);
 					}
-					translate([30,-23,25]) rotate([90,0,0]) cylinder(h = 20, r=12);
+					translate([30,-24,25]) rotate([90,0,0]) cylinder(h = 20, r=12);
 					translate([30,-15,25]) rotate([90,0,0]) cylinder(h = 10, r=8);
 				}
 			}
