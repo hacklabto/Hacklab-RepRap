@@ -17,12 +17,12 @@ module motor() {
 
 
 module diagonal_rod(grip = true) {
-	if (grip) for (y=[-1,1]) translate([0,39*y,-40]) rotate([30*y,0,0]) cylinder (h=100,r=4.0);
-	if (!grip) for (y=[-1,1]) translate([0,39*y,-40]) rotate([30*y,0,0]) cylinder (h=100,r=4.2);
+	if (grip) for (y=[-1,1]) translate([0,15*y,0]) rotate([(90-vert_angle)*y,0,0]) translate([0,0,-50]) cylinder (h=100,r=4.0);
+	if (!grip) for (y=[-1,1]) translate([0,15*y,0]) rotate([(90-vert_angle)*y,0,0]) translate([0,0,-50]) cylinder (h=100,r=4.2);
 }
 
 module diagonal_rod_cube (slide = 0, size = [16,16,10]) {
-	for (y=[-1,1]) translate([0,39*y,-40]) rotate([30*y,0,0]) translate([0,0,50+slide]) cube(size=size,center=true);
+	for (y=[-1,1]) translate([0,15*y,0]) rotate([(90-vert_angle)*y,0,0]) translate([0,0,slide]) cube(size=size,center=true);
 }
 
 module vertical_rods() {

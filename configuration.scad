@@ -51,7 +51,7 @@ threaded_rod_vertical_clearance = 2;
 
 tear_shape = false; //Use tear shaped holes for rods? not compatable with tight_grip = true
 
-tight_grip = true; // Use tight holes where possible so that parts will self tap when 
+tight_grip = false; // Use tight holes where possible so that parts will self tap when 
                    // threaded rod is drilled in. Reduces need for nuts.
                    // tight_grip = false not compatable with two_top_rods = false
 
@@ -99,8 +99,6 @@ total_unprintable_area = [0,
 vert_angle = atan( 2*(build_volume[Z]+total_unprintable_area[Z])/(build_volume[Y]+total_unprintable_area[Y]));
 
 echo("Frame Vertex Angle: ",vert_angle);
-
-
 
 // Legacy
 //=================
