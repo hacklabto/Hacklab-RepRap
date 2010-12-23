@@ -21,6 +21,7 @@ difference(){
 			for (y=[-1,1])  translate ([-40,30*y,0]) rotate([0,90,0]) cylinder(h = 70, r=8, $fn=30);
 		}else {
 			translate([-5,0,-0.5]) cube(size = [70,60,15], center = true);
+			translate ([-32,0,0]) diagonal_rod_cube(slide=9);
 		}		 
 		translate ([26.5,0,-8]) cylinder(h=15,r=8);
 	}
@@ -31,10 +32,10 @@ difference(){
 
 	//Diagonal rod and nut space
 	translate ([-32,0,0]) diagonal_rod();
-	translate ([-32,0,0]) diagonal_rod_cube(slide=4);
 	//top rod(s):
 	if (two_top_rods) {
 		for (y=[-1,1]) translate([-50,30*y,0]) rotate([0,90,0]) cylinder(h = 100, r=4.5);
+		translate ([-32,0,0]) diagonal_rod_cube(slide=9);
 	}else {
 		translate([-50,0,0]) rotate([0,90,0]) cylinder(h = 22.5, r=4.0);
 	}

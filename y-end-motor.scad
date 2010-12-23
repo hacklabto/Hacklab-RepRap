@@ -1,35 +1,57 @@
 include <lib/mcad/motors.scad>
+include <lib/mcad/servos.scad>
+include <configuration.scad>
+
+use_servos = false;
 
 mount_thickness = 15;
-//angle of the frame attaching arm
-arm_angle = 25;
-arm_thickness = 10;
-arm_length = 30;
+frame_attachement_thickness = 3;
 
-union()
+frame_attachement_radius = frame_attachement_thickness+m8_diameter;
+mount_width = 40;
+mount_length = 40+frame_attachement_radius;
+
+
+difference()
+{
+	union()
+	{
+		// Frame Attachement
+		frame_attachement_cylinder(frame_attachement_radius);
+
+		// Motor Mount Block and Mochup
+		cube([mount_width,mount_length,mount_thickness], center = true);
+		if (!use_servos)
+			translate([0,-frame_attachement_radius/2,-mount_thickness/2])
+				stepper_motor_mount(17,mochup=true);
+	}
+	frame_attachement_cylinder(m8_diameter,10);
+	translate([0,-frame_attachement_radius/2,0])
+		y_motor_mount();
+}
+
+module frame_attachement_cylinder(radius, extra_cut_length=0)
 {
 	//Frame Attachment
-	for (arm = [-1,1])
-		translate([0,arm*(20+2),-1])
-			rotate([(arm - 1)*180 + arm_angle])
-				translate([0, arm*arm_length/2, 0]) difference()
+	translate([0,mount_length/2,frame_attachement_radius-mount_thickness/2])
+		rotate([0,90,0]) difference()
 	{
-		union()
-		{
-			cube([40,arm_length,arm_thickness], center=true);
-			translate([0,arm*arm_length/2,0]) rotate([0,90,0])
-				cylinder(h=40, r=10, center=true);
-		}
-		translate([0,arm*arm_length/2,0]) rotate([0,90,0])
-			cylinder(h=40+1, r=5, center=true);
+		cylinder(h=mount_width+extra_cut_length, r=radius, center=true);
 	}
-	
-	// Motor Mount
-	stepper_motor_mount(17,mochup=true);
-	difference() 
+}
+
+module y_motor_mount()
+{
+	if (use_servos)
 	{
-		cube([40,50,mount_thickness], center = true);
-		linear_extrude(height = mount_thickness+1, center = true) 
-			stepper_motor_mount(17,mochup=true);
+		alignds420([0,0,9], [0,180,0], screws = 1000, axle_lenght = 0);
+	}
+	else
+	{ // (use steppers)
+		linear_extrude(height = mount_thickness
+			+frame_attachement_radius*2,  center = true)
+		{
+			stepper_motor_mount(17,mochup=false);
+		}
 	}
 }
