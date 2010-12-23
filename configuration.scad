@@ -47,7 +47,7 @@ two_top_rods = true; //Use two top rods or one?
 
 tear_shape = false; //Use tear shaped holes for rods? not compatable with tight_grip = true
 
-tight_grip = true; // Use tight holes where possible so that parts will self tap when 
+tight_grip = false; // Use tight holes where possible so that parts will self tap when 
                    // threaded rod is drilled in. Reduces need for nuts.
                    // tight_grip = false not compatable with two_top_rods = false
 
