@@ -63,7 +63,8 @@ $(BUILDDIR)/%.stl : $(BUILDDIR) %.scad
 
 $(BUILDDIR)/pulley.stl : $(BUILDDIR)
 	@echo "Fetching nophead's pulley.stl..."
-	pushd $(BUILDDIR); wget http://www.thingiverse.com/download:5914 -O pulley.stl; popd
+	wget http://www.thingiverse.com/download:5914 -O $(BUILDDIR)/pulley.stl
+	touch $(BUILDDIR)/pulley.stl
 
 clean :
 	$(RM) -rf $(BUILDDIR)
