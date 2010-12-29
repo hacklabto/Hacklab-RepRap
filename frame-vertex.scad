@@ -3,6 +3,7 @@
 // Rob Gilson, Chris Olah, Josef Průša, Vik, Tonokps
 
 include <configuration.scad>
+include <common.scad>
 
 //Vertex Options
 //==================
@@ -10,15 +11,13 @@ include <configuration.scad>
 vertex_height=threaded_rod_diameter+threaded_rod_vertical_clearance*2;
 FN=32;
 
-hor_hole_seperation = threaded_rod_diameter*2+threaded_rod_horizontal_clearance*2;
-
 
 //Polygon verticies
 //==================
 mid_l = 35;
 mid_w = 25;
 
-bot_l = 10;
+bot_l = 15;
 bot_w = 10;
 
 
@@ -51,8 +50,7 @@ translate ([0,0,vertex_height/2])difference()
 	}
 	
 	// Horizontal holes
-	zhole(threaded_rod_diameter);
-	translate([0, hor_hole_seperation]) zhole(threaded_rod_diameter, 200); 
+	frame_horizontal_struts();
 
 	// Frame triangle horizontal hole
 	translate([0,hor_hole_seperation/2]) xteardrop(threaded_rod_diameter, 200);
