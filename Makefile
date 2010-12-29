@@ -8,11 +8,13 @@ endif
 
 BUILDDIR=./build
 
-# PARTS = bar-clamp belt-clamp coupling endstop-holder frame-vertex pla-bushing prusalogo rod-clamp x-carriage x-end-idler x-end-motor y-slider-better z-motor-mount
-## prusalogo.scad depends on bitmap.scad
-PARTS = bar-clamp belt-clamp coupling endstop-holder frame-vertex pla-bushing rod-clamp x-carriage x-end-idler x-end-motor y-slider-better z-motor-mount z-motor-mount-onerod
+#_PARTS = pulley bar-clamp belt-clamp coupling endstop-holder frame-vertex pla-bushing prusalogo rod-clamp x-carriage x-end-idler x-end-motor y-slider-better z-motor-mount
+### prusalogo.scad depends on bitmap.scad
+_PARTS = pulley bar-clamp belt-clamp coupling endstop-holder frame-vertex pla-bushing prusalogo rod-clamp x-carriage x-end-idler x-end-motor y-slider-better z-motor-mount
 
-.PHONY : usage all clean $(PARTS) MakerbotPlates MendelPlate
+PARTS = $(patsubst %,$(BUILDDIR)/%.stl,$(_PARTS))
+
+.PHONY : usage all clean _PARTS MakerbotPlates MendelPlate
 
 default : usage
 
@@ -34,10 +36,9 @@ parts : $(PARTS)
 $(BUILDDIR) :
 	mkdir -p $(BUILDDIR)
 
-MakerbotPlates : $(BUILDDIR) $(BUILDDIR)/pulley.stl
+MakerbotPlates : parts
 	cp makerbot.scad $(BUILDDIR)
-	cp frame-vertex-foot.stl $(BUILDDIR)
-	cp prusalogo.stl $(BUILDDIR)
+#	cp prusalogo.stl $(BUILDDIR)
 	cp y-motor-bracket_1off.stl $(BUILDDIR)
 	cp z-bar-top-clamp_4off.stl $(BUILDDIR)
 	$(OPENSCAD) -D render_plate=1 -s $(BUILDDIR)/mbplate1.stl $(BUILDDIR)/makerbot.scad
@@ -46,21 +47,24 @@ MakerbotPlates : $(BUILDDIR) $(BUILDDIR)/pulley.stl
 	$(OPENSCAD) -D render_plate=4 -s $(BUILDDIR)/mbplate4.stl $(BUILDDIR)/makerbot.scad
 	$(OPENSCAD) -D render_plate=5 -s $(BUILDDIR)/mbplate5.stl $(BUILDDIR)/makerbot.scad
 
-MendelPlate : $(BUILDDIR) $(BUILDDIR)/pulley.stl
+MendelPlate : parts
 	cp plate1.scad $(BUILDDIR)
-	cp frame-vertex-foot.stl $(BUILDDIR)
-	cp prusalogo.stl $(BUILDDIR)
+#	cp prusalogo.stl $(BUILDDIR)
 	cp y-motor-bracket_1off.stl $(BUILDDIR)
 	cp z-bar-top-clamp_4off.stl $(BUILDDIR)
 	$(OPENSCAD) -s $(BUILDDIR)/plate1.stl $(BUILDDIR)/plate1.scad
 
-$(PARTS) : $(BUILDDIR) $(BUILDDIR)/pulley.stl
-	@echo "Processing $@"
-	$(OPENSCAD) -s $(BUILDDIR)/$@.stl $@.scad
+$(_PARTS) :
+	$(MAKE) $(BUILDDIR)/$@.stl
+
+$(BUILDDIR)/%.stl : $(BUILDDIR) %.scad
+	@echo "Processing $*"
+	$(OPENSCAD) -s $(BUILDDIR)/$*.stl $<
 
 $(BUILDDIR)/pulley.stl : $(BUILDDIR)
 	@echo "Fetching nophead's pulley.stl..."
-	pushd $(BUILDDIR); wget http://www.thingiverse.com/download:5914; popd
+	wget http://www.thingiverse.com/download:5914 -O $(BUILDDIR)/pulley.stl
+	touch $(BUILDDIR)/pulley.stl
 
 clean :
 	$(RM) -rf $(BUILDDIR)
