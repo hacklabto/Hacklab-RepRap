@@ -1,57 +1,66 @@
-include <lib/mcad/motors.scad>
-include <lib/mcad/servos.scad>
 include <configuration.scad>
+include <common.scad>
+include <lib/mcad/motors.scad>
 
-use_servos = false;
-
-mount_thickness = 15;
-frame_attachement_thickness = 3;
-
-frame_attachement_radius = frame_attachement_thickness+m8_diameter;
-mount_width = 40;
-mount_length = 40+frame_attachement_radius;
-
+motor_mount_depth = 10;
+length =57.5;
+height = 42.5;
 
 difference()
 {
-	union()
+	//Motor mount body
+	translate([21.5,0,0]) union()
 	{
-		// Frame Attachement
-		frame_attachement_cylinder(frame_attachement_radius);
-
-		// Motor Mount Block and Mochup
-		cube([mount_width,mount_length,mount_thickness], center = true);
-		if (!use_servos)
-			translate([0,-frame_attachement_radius/2,-mount_thickness/2])
-				stepper_motor_mount(17,mochup=true);
+		rounded_cube([length,height,motor_mount_depth], rounding=5, center = true);
+		translate([-length/2+8,height/2-4]) cylinder(r=8, h=motor_mount_depth, center = true);
 	}
-	frame_attachement_cylinder(m8_diameter,10);
-	translate([0,-frame_attachement_radius/2,0])
-		y_motor_mount();
+
+	// Horizontal holes
+	translate([0,threaded_rod_diameter /2])
+		frame_horizontal_struts(center=true, threaded=true);	
+	
+	// Motor mounts
+	translate([27.5,0,0])
+		linear_extrude(height=motor_mount_depth+1, center=true)
+			stepper_motor_mount(17, mochup=false);
 }
+translate([27.5,0,0])
+	stepper_motor_mount(17, mochup=true);
 
-module frame_attachement_cylinder(radius, extra_cut_length=0)
-{
-	//Frame Attachment
-	translate([0,mount_length/2,frame_attachement_radius-mount_thickness/2])
-		rotate([0,90,0]) difference()
-	{
-		cylinder(h=mount_width+extra_cut_length, r=radius, center=true);
-	}
-}
 
-module y_motor_mount()
+corner_pos = [[-1,-1], [1,-1], [1,1], [-1,1]];
+
+module round(radius, corner)
 {
-	if (use_servos)
+	intersection()
 	{
-		alignds420([0,0,9], [0,180,0], screws = 1000, axle_lenght = 0);
-	}
-	else
-	{ // (use steppers)
-		linear_extrude(height = mount_thickness
-			+frame_attachement_radius*2,  center = true)
+		difference()
 		{
-			stepper_motor_mount(17,mochup=false);
+			square([radius*2, radius*2], center=true);
+			circle(r=radius, center=true);
 		}
+
+		for(i=[0:3]) if (corner==i)
+		{
+			translate(corner_pos[i]*radius/2)
+				square([radius,radius], center=true);
+		}
+	}
+}
+
+module rounded_cube(dimensions, rounding, center=false)
+{
+	offsets = dimensions-[rounding*2,rounding*2];
+	difference()
+	{
+		cube(dimensions, center = true);
+
+		//Rounded corners
+		linear_extrude(height=motor_mount_depth+1, center=true)
+			for(i=[0:3])
+				translate([ 
+					offsets[0]/2*corner_pos[i][0],
+					 offsets[1]/2*corner_pos[i][1] ])
+						round(rounding,i);
 	}
 }

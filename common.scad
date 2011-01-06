@@ -46,4 +46,25 @@ module x_axis_rods() {
 	}
 }
 
+// horizontal frame hole
+module frame_hor_hole(threaded=false)
+{
+	cylinder(h=200, r=threaded_rod_diameter/2-(threaded?1:0), center=true);
+}
 
+module frame_vert_hole(threaded=false)
+{
+	cylinder(h=200, r=threaded_rod_diameter/2-(threaded?1:0), center=true);
+}
+
+//Holes for the threaded rods at either end of the y stage
+module frame_horizontal_struts(center=false, threaded=false)
+{
+	offset = (center==true)?-hor_hole_seperation/2:0;
+
+	translate([0, offset])
+	{
+		frame_hor_hole(threaded);
+		translate([0, hor_hole_seperation]) frame_hor_hole(threaded);
+	}
+}

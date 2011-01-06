@@ -10,6 +10,7 @@
 //include <lib/mcad/motors.scad>
 include <constants.scad>
 
+$fs= 0.3;
 
 // Frame Design Settings
 //=================
@@ -31,7 +32,7 @@ two_top_rods = true; //Use two top rods or one?
 //=================
 
 //The x,y and z printable dimensions in that order
-build_volume = [100,100,100];
+build_volume = [100,100,80];
 
 
 
@@ -47,6 +48,9 @@ threaded_rod_horizontal_clearance = 4;
 
 //the plastic needed above and under each threaded rod hole
 threaded_rod_vertical_clearance = 2;
+
+nut_diameter=14.3;
+nut_thickness = 6.9;
 
 
 tear_shape = false; //Use tear shaped holes for rods? not compatable with tight_grip = true
@@ -77,7 +81,7 @@ basement_height = 90;
 attic_height = 5;
 
 //unprintable area due to the x ends/z-sliders
-z_slider_unprintable_height = 20;
+z_slider_unprintable_height = 70;
 
 // extra length needed on the y axis to compensate for the 
 // y-carriage's length. This is setup for the ABP carriage mount.
@@ -99,6 +103,10 @@ total_unprintable_area = [0,
 vert_angle = atan( 2*(build_volume[Z]+total_unprintable_area[Z])/(build_volume[Y]+total_unprintable_area[Y]));
 
 echo("Frame Vertex Angle: ",vert_angle);
+
+hor_hole_seperation = threaded_rod_diameter*2+threaded_rod_horizontal_clearance*2;
+
+
 
 // Legacy
 //=================
