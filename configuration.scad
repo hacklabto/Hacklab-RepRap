@@ -49,6 +49,9 @@ threaded_rod_horizontal_clearance = 4;
 //the plastic needed above and under each threaded rod hole
 threaded_rod_vertical_clearance = 2;
 
+nut_diameter=14.3;
+nut_thickness = 6.9;
+
 
 tear_shape = false; //Use tear shaped holes for rods? not compatable with tight_grip = true
 
