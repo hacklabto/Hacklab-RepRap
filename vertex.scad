@@ -17,7 +17,7 @@ FN=32;
 mid_l = 32;
 mid_w = 20;
 
-bot_l = 15;
+bot_l = 10;
 bot_w = 10;
 
 
@@ -36,7 +36,7 @@ translate ([0,0,vertex_height/2])difference()
 				points=[
 					[-mid_w/2, mid_l], [-mid_w/2, 0], [-bot_w/2,-bot_l],
 
-					[bot_w/2,-bot_l], [mid_w/2,0], [mid_w/2,mid_l],
+					[bot_w/2,-bot_l], [mid_w/2,0], [mid_w/2,mid_l*(7+2*cos(vert_angle))/8],
 					[-mid_w/2+top_w2*sin(vert_angle),mid_l+top_w2*cos(vert_angle)],
 					[-mid_w/2+top_w2*sin(vert_angle)-top_w*cos(vert_angle),mid_l+top_w2*cos(vert_angle)+top_w*sin(vert_angle)],
 					[-mid_w/2-top_w*cos(vert_angle), mid_l+top_w*sin(vert_angle)]
@@ -54,9 +54,9 @@ translate ([0,0,vertex_height/2])difference()
 	translate([0,hor_hole_seperation/2]) xteardrop(threaded_rod_diameter, 200);
 
 	// Frame triangle angled hole
-	translate([-mid_w/2+top_w2*sin(vert_angle)/2-top_w*cos(vert_angle),mid_l+top_w2*cos(vert_angle)/2+top_w*sin(vert_angle)])  rotate(180-vert_angle) translate([50-top_w,0,0]) xteardrop(threaded_rod_diameter,100);
+	translate([-mid_w/2+top_w2*sin(vert_angle)/2-top_w*cos(vert_angle),mid_l+top_w2*cos(vert_angle)/2+top_w*sin(vert_angle)])  rotate(180-vert_angle) translate([50-top_w*(1+cos(vert_angle)/4)-2,0,0]) xteardrop(threaded_rod_diameter,100);
 	
-translate([-mid_w/2+top_w2*sin(vert_angle)/2-top_w*cos(vert_angle),mid_l+top_w2*cos(vert_angle)/2+top_w*sin(vert_angle)])  rotate(180-vert_angle) translate([-top_w*3/4,0,0]) cube([nut_thickness,nut_diameter,nut_diameter],center=true);
+translate([-mid_w/2+top_w2*sin(vert_angle)/2-top_w*cos(vert_angle),mid_l+top_w2*cos(vert_angle)/2+top_w*sin(vert_angle)])  rotate(180-vert_angle) translate([-top_w*3/4+2,0,0]) cube([nut_thickness,nut_diameter,nut_diameter],center=true);
 
 }
 
