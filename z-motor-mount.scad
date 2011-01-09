@@ -11,7 +11,6 @@
 include <configuration.scad>
 include <common.scad>
 
-
 difference(){
 	// Main body:
 	union(){
@@ -35,10 +34,11 @@ difference(){
 	//top rod(s):
 	if (two_top_rods) {
 		for (y=[-1,1]) translate([-50,30*y,0]) rotate([0,90,0]) cylinder(h = 100, r=4.5);
-		translate ([-32,0,0]) diagonal_rod_cube(slide=9);
+		translate ([-32,0,0]) diagonal_rod_cube(slide=11);
 	}else {
 		translate([-50,0,0]) rotate([0,90,0]) cylinder(h = 22.5, r=4.0);
 	}
+	translate ([-32,0,0]) diagonal_rod_cube(slide=-11);
 }
 
 
