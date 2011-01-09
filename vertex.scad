@@ -56,7 +56,7 @@ translate ([0,0,vertex_height/2])difference()
 	// Frame triangle angled hole
 	translate([-mid_w/2+top_w2*sin(vert_angle)/2-top_w*cos(vert_angle),mid_l+top_w2*cos(vert_angle)/2+top_w*sin(vert_angle)])  rotate(180-vert_angle) translate([50-top_w*(1+cos(vert_angle)/4)-2,0,0]) xteardrop(threaded_rod_diameter,100);
 	
-translate([-mid_w/2+top_w2*sin(vert_angle)/2-top_w*cos(vert_angle),mid_l+top_w2*cos(vert_angle)/2+top_w*sin(vert_angle)])  rotate(180-vert_angle) translate([-top_w*3/4+2,0,0]) cube([nut_thickness,nut_diameter,nut_diameter],center=true);
+translate([-mid_w/2+top_w2*sin(vert_angle)/2-top_w*cos(vert_angle),mid_l+top_w2*cos(vert_angle)/2+top_w*sin(vert_angle)])  rotate(180-vert_angle) translate([-top_w*3/4+2,0,0]) cube([nut_thickness,nut_diameter,vertex_height+1],center=true);
 
 }
 
