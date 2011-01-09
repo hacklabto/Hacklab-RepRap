@@ -35,7 +35,7 @@ x_rod_spacing = 50;
 //=================
 
 //The x,y and z printable dimensions in that order
-build_volume = [100,100,80];
+build_volume = [100,100,50];
 
 
 
@@ -43,7 +43,7 @@ build_volume = [100,100,80];
 //=================
 
 //the diameter of the threaded rods
-threaded_rod_diameter = 8.4;
+threaded_rod_diameter = 9;
 
 //the radius of plastic needed around each threaded rod hole
 //to hold it in place
@@ -52,7 +52,7 @@ threaded_rod_horizontal_clearance = 4;
 //the plastic needed above and under each threaded rod hole
 threaded_rod_vertical_clearance = 2;
 
-nut_diameter=12;
+nut_diameter=13.5;
 nut_thickness = 7.8;
 
 
@@ -120,7 +120,7 @@ m8_diameter = threaded_rod_diameter;
 // Used for $fn nut trick -> cylinder(h = 5, r=4.5, $fn=6, center=true);
 
 //Diameter of the nuts used on the the threaded rod
-nut_diameter = 16.4;
+//nut_diameter = 16.4;
 //Clearance for accessible nuts such as on frame verticies
 nut_clearance = 4;
 
