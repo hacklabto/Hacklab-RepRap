@@ -32,11 +32,11 @@ module vertical_rods() {
 
 
 module x_axis_rods() {
-	translate([-25, 0, 0]) rotate([90,0,0]) {
+	translate([-x_rod_spacing/2, 0, 0]) rotate([90,0,0]) {
 		cylinder(h = 120, r=4.5, $fn=20, center=true);
 		if (tear_shape) translate([0, 2.60, 0]) cylinder(h = 120, r=3.65, $fn=6, center=true);
 	}
-	translate([25, 0, 0]) rotate([90,0,0]) {
+	translate([x_rod_spacing/2, 0, 0]) rotate([90,0,0]) {
 		cylinder(h = 120, r=4.5, $fn=20, center=true);
 		if (tear_shape) translate([0, 2.60, 0]) cylinder(h = 120, r=3.65, $fn=6, center=true);
 	}

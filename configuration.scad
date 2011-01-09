@@ -27,6 +27,9 @@ two_top_rods = true; //Use two top rods or one?
                       //this design at your own risk!
 
 
+//Spacing of the 2 smooth rods that the x carriage rides on
+x_rod_spacing = 50;
+
 
 // Build Volume Settings
 //=================
