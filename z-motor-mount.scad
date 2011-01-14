@@ -22,7 +22,11 @@ difference(){
 			translate([-5,0,-0.5]) cube(size = [70,60,15], center = true);
 		}		 
 		translate ([26.5,0,-8]) cylinder(h=15,r=8);
-		for (y=[-1,1]) translate([0,38*y,0]) rotate([(90-vert_angle)*y,0,0]) translate([0,0,3]) cylinder(r=10,h=18,center=true);
+		intersection() { 	translate([0,0,92]) cube(size=[200,200,200], center = true); // cleanup the base
+			union() {
+				for (y=[-1,1]) translate([0,38*y,0]) rotate([(90-vert_angle)*y,0,0]) translate([0,0,3]) cylinder(r=10,h=18,center=true);
+			}
+		}
 	}
 	// Motor sits in this
 	translate([-2.1,0,3.1]) motor();
@@ -37,6 +41,9 @@ difference(){
 	}else {
 		translate([-50,0,0]) rotate([0,90,0]) cylinder(h = 22.5, r=4.0);
 	}
+
+	// create even rest for nuts of diagonal rods
+	for (y=[-1,1]) translate([0,38*y,0]) rotate([(90-vert_angle)*y,0,0]) translate([0,0,-11]) cylinder(r=10,h=10,center=true);
 }
 
 
