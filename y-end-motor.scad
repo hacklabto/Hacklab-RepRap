@@ -2,7 +2,7 @@ include <configuration.scad>
 include <common.scad>
 include <lib/mcad/motors.scad>
 
-motor_mount_depth = 10;
+motor_mount_depth = 6;
 length =57.5;
 height = 42.5;
 
@@ -11,18 +11,18 @@ difference()
 	//Motor mount body
 	translate([21.5,0,0]) union()
 	{
-		rounded_cube([length,height,motor_mount_depth], rounding=5, center = true);
-		translate([-length/2+8,height/2-4]) cylinder(r=8, h=motor_mount_depth, center = true);
+		rounded_cube([length,height,motor_mount_depth], rounding=10, center = true);
+//		translate([-length/2+8,height/2-4]) cylinder(r=8, h=motor_mount_depth, center = true);
 	}
 
 	// Horizontal holes
-	translate([0,threaded_rod_diameter /2])
-		frame_horizontal_struts(center=true, threaded=true);	
+//	translate([0,threaded_rod_diameter /2])
+	frame_horizontal_struts(center=true, threaded=false);
 	
 	// Motor mounts
 	translate([27.5,0,0])
 		linear_extrude(height=motor_mount_depth+1, center=true)
-			stepper_motor_mount(17, mochup=false);
+			stepper_motor_mount(17, mochup=false, tolerance = 0.5);
 }
 translate([27.5,0,0])
 	stepper_motor_mount(17, mochup=true);
