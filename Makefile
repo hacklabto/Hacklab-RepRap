@@ -10,7 +10,7 @@ BUILDDIR=./build
 
 #_PARTS = pulley bar-clamp belt-clamp coupling endstop-holder frame-vertex pla-bushing prusalogo rod-clamp x-carriage x-end-idler x-end-motor y-slider-better z-motor-mount
 ### prusalogo.scad depends on bitmap.scad
-_PARTS = pulley bar-clamp belt-clamp coupling endstop-holder frame-vertex pla-bushing prusalogo rod-clamp x-carriage x-end-idler x-end-motor y-slider-better z-motor-mount
+_PARTS = pulley bar-clamp belt-clamp coupling endstop-holder vertex pla-bushing prusalogo rod-clamp x-carriage x-end-idler x-end-motor y-slider-better z-motor-mount
 
 PARTS = $(patsubst %,$(BUILDDIR)/%.stl,$(_PARTS))
 
@@ -59,7 +59,7 @@ $(_PARTS) :
 
 $(BUILDDIR)/%.stl : $(BUILDDIR) %.scad
 	@echo "Processing $*"
-	$(OPENSCAD) -s $(BUILDDIR)/$*.stl $<
+	$(OPENSCAD) -s $(BUILDDIR)/$*.stl $*.scad
 
 $(BUILDDIR)/pulley.stl : $(BUILDDIR)
 	@echo "Fetching nophead's pulley.stl..."
