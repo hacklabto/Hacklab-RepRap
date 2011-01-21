@@ -36,7 +36,7 @@ x_rod_spacing = 50;
 //=================
 
 //The x,y and z printable dimensions in that order
-build_volume = [100,100,50];
+build_volume = [100,100,70];
 
 
 
