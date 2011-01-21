@@ -100,6 +100,16 @@ total_unprintable_area = [0,
 	basement_height+attic_height+z_slider_unprintable_height];
 
 
+// Bowden extruder settings
+//=================
+filament_diameter = 3;
+bowden_tube_diameter = 5;
+bowden_cover_length = 20;
+bowden_tube_screw_space = 5;
+bowden_squeeze_space = 2;
+bowden_mount_tolerance = 0.2;
+
+
 // Driven Dimensions [NO USER-CONFIGURABLE OPTIONS]
 //=================
 
