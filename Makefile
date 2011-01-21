@@ -10,7 +10,7 @@ BUILDDIR=./build
 
 #_PARTS = pulley bar-clamp belt-clamp coupling endstop-holder frame-vertex pla-bushing prusalogo rod-clamp x-carriage x-end-idler x-end-motor y-slider-better z-motor-mount
 ### prusalogo.scad depends on bitmap.scad
-_PARTS = pulley bar-clamp belt-clamp coupling endstop-holder vertex pla-bushing prusalogo rod-clamp x-carriage x-end-idler x-end-motor y-slider-better z-motor-mount
+_PARTS = pulley bar-clamp belt-clamp coupling endstop-holder vertex pla-bushing prusalogo rod-clamp x-carriage x-end-idler x-end-motor y-slider-better z-motor-mount x-carriage-bowden-extruder wades-bowden-block
 
 PARTS = $(patsubst %,$(BUILDDIR)/%.stl,$(_PARTS))
 
@@ -57,6 +57,10 @@ MendelPlate : parts
 $(_PARTS) :
 	$(MAKE) $(BUILDDIR)/$@.stl
 
+$(BUILDDIR)/wades-bowden-block.stl : $(BUILDDIR) wades-bowden-block.scad $(BUILDDIR)/M8_Extruder_Block_3.stl
+	@echo "Processing $*"
+	$(OPENSCAD) -s $(BUILDDIR)/wades-bowden-block.stl wades-bowden-block.scad
+
 $(BUILDDIR)/%.stl : $(BUILDDIR) %.scad
 	@echo "Processing $*"
 	$(OPENSCAD) -s $(BUILDDIR)/$*.stl $*.scad
@@ -64,6 +68,11 @@ $(BUILDDIR)/%.stl : $(BUILDDIR) %.scad
 $(BUILDDIR)/pulley.stl : $(BUILDDIR)
 	@echo "Fetching nophead's pulley.stl..."
 	wget http://www.thingiverse.com/download:5914 -O $(BUILDDIR)/pulley.stl
+	touch $(BUILDDIR)/pulley.stl
+
+$(BUILDDIR)/M8_Extruder_Block_3.stl : $(BUILDDIR)
+	@echo "Fetching Wades Extruder Block.stl..."
+	wget http://www.thingiverse.com/download:4939 -O $(BUILDDIR)/M8_Extruder_Block_3.stl
 	touch $(BUILDDIR)/pulley.stl
 
 clean :

@@ -15,13 +15,8 @@ zip_tie_spacing = 5;
 
 extruder_mount_distance = 30;
 
-filament_diameter = 3;
 pfte_insulator_diameter = 16;
 pfte_insulator_dimple = 10;
-bowden_tube_diameter = 5;
-bowden_cover_length = 20;
-bowden_tube_screw_space = 5;
-bowden_squeeze_space = 2;
 
 belt_width = 5+2;
 clamp_length = belt_width+zip_tie_hole[1];
@@ -29,14 +24,17 @@ width = zip_tie_spacing*3+zip_tie_hole[1]*2;
 
 ptfe_slider_outer_diameter = 7/16 * 25.4+1;
 
+box_length = bowden_tube_diameter + 4 * bowden_tube_screw_space;
+
 difference() {
 	carriage();
-	translate([0,width/4,pfte_insulator_dimple-height/2+bowden_cover_length/2]) cube([bowden_tube_diameter + 4 * bowden_tube_screw_space,width/2,bowden_cover_length], center = true);
+	translate([0,width/4,pfte_insulator_dimple-height/2+bowden_cover_length/2]) cube([box_length,width/2,bowden_cover_length], center = true);
 }
 
-translate([0,width/2+3,-pfte_insulator_dimple]) intersection() {
-	carriage();
-	translate([0,width/4,pfte_insulator_dimple-height/2+bowden_cover_length/2]) cube([bowden_tube_diameter + 4 * bowden_tube_screw_space,width/2,bowden_cover_length], center = true);
+translate([0,width/2+3,-pfte_insulator_dimple-bowden_mount_tolerance]) 
+intersection() {
+	carriage(); 
+	translate([0,width/4,pfte_insulator_dimple-height/2+bowden_cover_length/2+bowden_mount_tolerance/2]) cube([box_length-bowden_mount_tolerance*2,width/2,bowden_cover_length-bowden_mount_tolerance], center = true);
 }
 
 module carriage() {
