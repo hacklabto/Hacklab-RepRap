@@ -10,6 +10,8 @@
 include <configuration.scad>
 include <common.scad>
 
+wall_thickness = 4.5;
+
 translate(v = [0,35,24.5]) {
 	union() {
 		difference() {
@@ -48,8 +50,8 @@ translate(v = [0,35,24.5]) {
 		translate(v = [0, -25, 15])
 			difference() {
 				union() {
-					translate(v = [0, -3.5, -19.5])
-						cube(size = [24,17,40], center = true);
+					translate(v = [0, -1.75-wall_thickness/2, -19.5])
+						cube(size = [17+wall_thickness*2,13.5+wall_thickness,40], center = true);
 					translate(v = [0, -3.5, -31.65])
 						cube(size = [35,17,15.8], center = true);
 				}
@@ -62,7 +64,7 @@ translate(v = [0,35,24.5]) {
 			difference() {
 				union() {
 					translate(v = [0, -0, -19.5])
-						cylinder(h = 40, r=12, $fn=6, center=true);
+						cylinder(h = 40, r=(m8_nut_diameter/2+wall_thickness), $fn=6, center=true);
 					translate(v = [0, 0, -31.65])
 						cube(size = [35,10,15.8], center = true);
 				}
@@ -80,8 +82,8 @@ translate(v = [0,35,24.5]) {
 			mirror() {
 				translate(v = [0, -35, -12]) {
 					difference() {
-						translate(v = [33.5, -5, 6])
-							cube(size = [3,10,10], center = true);
+						translate(v = [35-wall_thickness/2, -5, 6])
+							cube(size = [wall_thickness,10,10], center = true);
 						translate(v = [32.5, -6, 6.5])
 							rotate(a=[0,90,0])
 								cylinder(h = 90, r=m4_diameter/2, $fn=9, center=true);
