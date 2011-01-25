@@ -36,17 +36,19 @@ module vertical_rods() {
 
 
 module x_axis_rods() {
-	translate([-x_rod_spacing/2, 0, 0]) rotate([90,0,0]) {
-		cylinder(h = 120, r=4.5, $fn=20, center=true);
-		if (tear_shape) translate([0, 2.60, 0]) cylinder(h = 120, r=3.65, $fn=6, center=true);
-	}
-	translate([x_rod_spacing/2, 0, 0]) rotate([90,0,0]) {
-		cylinder(h = 120, r=4.5, $fn=20, center=true);
-		if (tear_shape) translate([0, 2.60, 0]) cylinder(h = 120, r=3.65, $fn=6, center=true);
-	}
-	if (!x_belt) translate([35, 0, 30]) rotate([90,0,0]) {
-		cylinder(h = 120, r=4.5, $fn=20, center=true);
-		if (tear_shape) translate([0, 2.60, 0]) cylinder(h = 120, r=3.65, $fn=6, center=true);
+	rotate ([0,0,180]) {
+		translate([-x_rod_spacing/2, 0, 0]) rotate([90,0,0]) {
+			cylinder(h = 120, r=4.5, $fn=20, center=true);
+			if (tear_shape) translate([0, 2.60, 0]) cylinder(h = 120, r=3.65, $fn=6, center=true);
+		}
+		translate([x_rod_spacing/2, 0, 0]) rotate([90,0,0]) {
+			cylinder(h = 120, r=4.5, $fn=20, center=true);
+			if (tear_shape) translate([0, 2.60, 0]) cylinder(h = 120, r=3.65, $fn=6, center=true);
+		}
+		if (!x_belt) translate([35, 0, 30]) rotate([90,0,0]) {
+			cylinder(h = 120, r=4.5, $fn=20, center=true);
+			if (tear_shape) translate([0, 2.60, 0]) cylinder(h = 120, r=3.65, $fn=6, center=true);
+		}
 	}
 }
 
