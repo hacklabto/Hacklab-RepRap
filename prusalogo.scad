@@ -1,4 +1,4 @@
-include <bitmap.scad>
+use <lib/mcad/bitmap/bitmap.scad>
 #cube([18,28,1],center=true);
 chars = ["P","R","U","S","A"];
 char_count = 5;
