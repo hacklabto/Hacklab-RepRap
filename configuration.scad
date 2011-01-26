@@ -8,6 +8,7 @@
 // http://github.com/prusajr/PrusaMendel
 
 //include <lib/mcad/motors.scad>
+include <lib/mcad/nuts_and_bolts.scad>
 include <constants.scad>
 
 $fs= 0.3;
@@ -35,7 +36,7 @@ x_rod_spacing = 50;
 //=================
 
 //The x,y and z printable dimensions in that order
-build_volume = [100,100,50];
+build_volume = [100,100,70];
 
 
 
@@ -52,8 +53,8 @@ threaded_rod_horizontal_clearance = 4;
 //the plastic needed above and under each threaded rod hole
 threaded_rod_vertical_clearance = 2;
 
-nut_diameter=13.5;
-nut_thickness = 7.8;
+nut_diameter=METRIC_NUT_AC_WIDTHS[8];//13.5;
+nut_thickness = METRIC_NUT_THICKNESS[8]; //7.8;
 
 
 tear_shape = false; //Use tear shaped holes for rods? not compatable with tight_grip = true
@@ -143,14 +144,14 @@ m4_diameter = 5;
 
 // M4 nut diameter diameter
 // Used for $fn nut trick -> cylinder(h = 5, r=4.5, $fn=6, center=true);
-m4_nut_diameter = 9;
+m4_nut_diameter = METRIC_NUT_AC_WIDTHS[4]; //9;
 
 // M3 rod/screw diameter
 m3_diameter = 4.4;
 
 // M3 nut diameter diameter
 // Used for $fn nut trick -> cylinder(h = 5, r=4.5, $fn=6, center=true);
-m3_nut_diameter = 7;
+m3_nut_diameter = METRIC_NUT_AC_WIDTHS[3]; //7;
 
 // Bushing holders diameter
 bushing_diameter = 11;
