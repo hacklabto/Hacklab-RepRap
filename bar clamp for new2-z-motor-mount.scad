@@ -32,7 +32,7 @@ cube([nut_thickness*1.8, nut_diameter*1.5,height], center = true);
 }
 translate([0, 0, 4]) cube ([nut_thickness,nut_diameter,nut_diameter+20],center= true);
 rotate([0,90, 0]) cylinder(h =30, r =m8_diameter/2);
-translate([5, 0 , height/4])cube([6,wide,wide+1],center=true); 
+translate([5, 0 , height/4])cube([6,m8_diameter-3,height*2],center=true); 
 translate([-5, 0 , 0])cube([6,6,height*2],center= true);
 }
 }
