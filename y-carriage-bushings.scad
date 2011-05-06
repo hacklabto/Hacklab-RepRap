@@ -15,7 +15,7 @@ connecting_rod_diameter = 5;
 
 // Bushing variables
 
-bushing_outer_diameter = 10;
+bushing_outer_diameter = 8.07;
 bushing_mount_thickness = 4;
 bushing_length = 0.5 * 25.4;
 

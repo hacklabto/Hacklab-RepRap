@@ -23,14 +23,14 @@ bot_w = 10;
 top_l = nut_thickness+5;
 top_w=nut_diameter+8;
 
-translate ([0,0,vertex_height/2])difference() 
+translate ([0,-15,vertex_height/2])difference() 
 {
 	linear_extrude(height=vertex_height, center=true) {
 		/* 7----------  6
 		    |     ==      |
-                        |                5
+                |                5
 		    8           4
-                        |      @   |		    
+                |      @    |		    
 		    |             |
 		    |             |
 		    0     @  3
