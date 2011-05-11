@@ -49,6 +49,8 @@ difference(){
 	//top rod(s):
 	for (y=[-1,1]) translate([-50,30*y,0]) rotate([0,90,0]) cylinder(h = 100, r=4.5);
 
+	translate([17,0,0]) cube([20,15,20],center=true);
+
 }
 
 
