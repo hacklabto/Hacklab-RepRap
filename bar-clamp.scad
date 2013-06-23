@@ -1,3 +1,6 @@
+// Rewritten for better scalability
+//Pablo2m
+//Based on
 // PRUSA Mendel  
 // Bar clamp
 // Used for joining 8mm rods
@@ -10,17 +13,16 @@
 
 include <configuration.scad>
 
-outer_diameter = m8_diameter/2+3.3;
+height= m8_diameter*2; diameter=  m8_diameter; radius= diameter/2; 
+wide=m8_diameter+6.6; dist_bars= 10;
 
 difference(){
-	union(){
-		
-		translate([outer_diameter, outer_diameter, 0])#cylinder(h =outer_diameter*2, r = outer_diameter, $fn = 20);
-		translate([outer_diameter, 0, 0])cube([17.5,outer_diameter*2,outer_diameter*2]);
-	}
+	 union(){		
+		cylinder(h =height, r = wide/2, center=true);
+		translate([wide/2, 0, 0])cube([dist_bars+radius+3,wide,height],center= true);
+	           }
 
-
-	translate([9, outer_diameter/2+1, 0])cube([18,05,20]);
-	translate([outer_diameter, outer_diameter, 0]) #cylinder(h =20, r = m8_diameter/2, $fn = 18);
-	translate([17, 17, 7.5]) rotate([90, 0, 0]) #cylinder(h =20, r = m8_diameter/2, $fn = 10);
+	translate([10, 0, 0])cube([18,05,height*1.2],center=true);
+	translate([dist_bars, 0, 0]) rotate([90, 0, 0]) #cylinder(h =height*1.2, r = radius, center=true);
+	#cylinder(h =height*1.2, r = radius, center= true);
 }
